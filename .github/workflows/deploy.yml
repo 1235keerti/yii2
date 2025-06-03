@@ -35,6 +35,8 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            IMAGE_TAG=admin807/yii2app:${{ github.sha }}
+            echo "Pulling image: $IMAGE_TAG"
             docker pull $IMAGE_TAG
             docker service update --image $IMAGE_TAG yii2app_yii2-app || docker service rollback yii2app_yii2-app
 
