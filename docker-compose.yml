@@ -1,9 +1,18 @@
-version: '2'
+version: '3.8'
+
 services:
-  php:
-    image: yiisoftware/yii2-php:7.4-apache
-    volumes:
-      - ~/.composer-docker/cache:/root/.composer/cache:delegated
-      - ./:/app:delegated
+  yii2-app:
+    image: admin807/yii2app:latest
+    build: .
     ports:
-      - '8000:80'
+      - "9000:9000"
+    networks:
+      - webnet
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+networks:
+  webnet:
+    driver: overlay
