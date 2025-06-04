@@ -13,7 +13,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 WORKDIR /var/www/html
 
 # Copy application code into container
-COPY . .
+COPY app/ .
 
 RUN git config --global --add safe.directory /var/www/html
 
