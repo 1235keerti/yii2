@@ -37,6 +37,7 @@ jobs:
           script: |
             sudo apt update
             sudo apt install -y ansible
+            cd /home/ubuntu/yii2-app/ansible
             ansible-playbook -i localhost, playbook.yml --connection=local --extra-vars "image_tag=admin807/yii2app:${{ github.sha }}"
 
             
